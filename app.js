@@ -51,10 +51,10 @@ new Products('pen', 'img/pen.jpg');
 new Products('pet-sweep', 'img/pet-sweep.jpg');
 new Products('scissors', 'img/scissors.jpg');
 new Products('shark', 'img/shark.jpg');
-new Products('sweep', 'img/sweep.jpg');
+new Products('sweep', 'img/sweep.png');
 new Products('tauntaun', 'img/tauntaun.jpg');
 new Products('unicorn', 'img/unicorn.jpg');
-new Products('usb', 'img/usb.jpg');
+new Products('usb', 'img/usb.gif');
 new Products('water-can', 'img/water-can.jpg');
 new Products('wine-glass', 'img/wine-glass.jpg');
 
@@ -99,7 +99,7 @@ function randomProducts() {
   Products.allProducts[randomRight].timesDisplayed++;
 
   // keep track of previously displayed images
-  // APPROACH 1:
+
   Products.lastDisplayed = [];
   Products.lastDisplayed.push(randomLeft);
   Products.lastDisplayed.push(randomRight);
@@ -121,7 +121,7 @@ function handleClick(event) {
   }
 
   // check the click counter
-  if(Products.totalClicks > 20) {
+  if(Products.totalClicks > 24) {
     // turn off event listener
     sectionElement.addEventListener('click', handleClick);
 
@@ -155,7 +155,7 @@ function showResults() {
 
 function updateVotes() {
   for(var i in Products.allProducts) {
-    // APPROACH 1:
+
     productsVotes.push(Products.allProducts[i].votes);
 
   }
