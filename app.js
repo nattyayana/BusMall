@@ -37,26 +37,26 @@ function Products(name, filepath) {
 }
 
 // make new Goat instances
-new Products('bag', 'bag.jpg');
-new Products('banana', 'banana.jpg');
-new Products('bathroom', 'bathroom.jpg');
-new Products('boots', 'boots.jpg');
-new Products('breakfast', 'breakfast.jpg');
-new Products('bubblegum', 'bubblegum.jpg');
-new Products('chair', 'chair.jpg');
-new Products('cthulhu', 'cthulhu.jpg');
-new Products('dog-duck', 'dog-duck.jpg');
-new Products('dragon', 'dragon.jpg');
-new Products('pen', 'pen.jpg');
-new Products('pet-sweep', 'pet-sweep.jpg');
-new Products('scissors', 'scissors.jpg');
-new Products('shark', 'shark.jpg');
-new Products('sweep', 'sweep.jpg');
-new Products('tauntaun', 'tauntaun.jpg');
-new Products('unicorn', 'unicorn.jpg');
-new Products('usb', 'usb.jpg');
-new Products('water-can', 'water-can.jpg');
-new Products('wine-glass', 'wine-glass.jpg');
+new Products('bag', 'img/bag.jpg');
+new Products('banana', 'img/banana.jpg');
+new Products('bathroom', 'img/bathroom.jpg');
+new Products('boots', 'img/boots.jpg');
+new Products('breakfast', 'img/breakfast.jpg');
+new Products('bubblegum', 'img/bubblegum.jpg');
+new Products('chair', 'img/chair.jpg');
+new Products('cthulhu', 'img/cthulhu.jpg');
+new Products('dog-duck', 'img/dog-duck.jpg');
+new Products('dragon', 'img/dragon.jpg');
+new Products('pen', 'img/pen.jpg');
+new Products('pet-sweep', 'img/pet-sweep.jpg');
+new Products('scissors', 'img/scissors.jpg');
+new Products('shark', 'img/shark.jpg');
+new Products('sweep', 'img/sweep.png');
+new Products('tauntaun', 'img/tauntaun.jpg');
+new Products('unicorn', 'img/unicorn.jpg');
+new Products('usb', 'img/usb.gif');
+new Products('water-can', 'img/water-can.jpg');
+new Products('wine-glass', 'img/wine-glass.jpg');
 
 
 
@@ -76,22 +76,22 @@ function randomProducts() {
   // Condition 1: randomLeft and randomRight are the same number/index
   // Condition 2: randomLeft was previously displayed
   // Condition 3: randomRight was previously displayed
-  while(randomLeft === randomRight || Products.lastDisplayed.includes(randomLeft) || Products.lastDisplayed.includes(randomMiddle) || Products.lastDisplayed.includes(randomLeft)) {
+  while(randomLeft === randomRight || Products.lastDisplayed.includes(randomRight) || Products.lastDisplayed.includes(randomMiddle) || Products.lastDisplayed.includes(randomLeft)) {
     console.log('Duplicate was caught!');
-    randomLeft = Math.floor(Math.random() * Products.allGoats.length);
-    randomMiddle = Math.floor(Math.random() * Products.allGoats.length);
-    randomRight = Math.floor(Math.random() * Products.allGoats.length);
+    randomLeft = Math.floor(Math.random() * Products.allProducts.length);
+    randomMiddle = Math.floor(Math.random() * Products.allProducts.length);
+    randomRight = Math.floor(Math.random() * Products.allProducts.length);
   }
 
   // Now that we know they are unique numbers, display the two unique images on the screen
-  rightImg.src = Products.allGoats[randomRight].filepath;
-  rightImg.alt = Products.allGoats[randomRight].name;
+  rightImg.src = Products.allProducts[randomRight].filepath;
+  rightImg.alt = Products.allProducts[randomRight].name;
 
-  middleImg.src = Products.allGoats[randomMiddle].filepath;
-  middleImg.alt = Products.allGoats[randomMiddle].name;
+  middleImg.src = Products.allProducts[randomMiddle].filepath;
+  middleImg.alt = Products.allProducts[randomMiddle].name;
 
-  leftImg.src = Products.allGoats[randomLeft].filepath;
-  leftImg.alt = Products.allGoats[randomLeft].name;
+  leftImg.src = Products.allProducts[randomLeft].filepath;
+  leftImg.alt = Products.allProducts[randomLeft].name;
 
   // incremented the number of times displayed
   Products.allProducts[randomLeft].timesDisplayed++;
@@ -99,7 +99,7 @@ function randomProducts() {
   Products.allProducts[randomRight].timesDisplayed++;
 
   // keep track of previously displayed images
-  // APPROACH 1:
+
   Products.lastDisplayed = [];
   Products.lastDisplayed.push(randomLeft);
   Products.lastDisplayed.push(randomRight);
@@ -121,7 +121,7 @@ function handleClick(event) {
   }
 
   // check the click counter
-  if(Products.totalClicks > 20) {
+  if(Products.totalClicks > 24) {
     // turn off event listener
     sectionElement.addEventListener('click', handleClick);
 
@@ -155,7 +155,7 @@ function showResults() {
 
 function updateVotes() {
   for(var i in Products.allProducts) {
-    // APPROACH 1:
+
     productsVotes.push(Products.allProducts[i].votes);
 
   }
