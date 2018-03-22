@@ -76,7 +76,7 @@ function randomProducts() {
   // Condition 1: randomLeft and randomRight are the same number/index
   // Condition 2: randomLeft was previously displayed
   // Condition 3: randomRight was previously displayed
-  while(randomLeft === randomRight || Products.lastDisplayed.includes(randomRight) || Products.lastDisplayed.includes(randomMiddle) || Products.lastDisplayed.includes(randomLeft)) {
+  while(randomLeft === randomRight || randomLeft === randomMiddle || randomMiddle === randomRight|| Products.lastDisplayed.includes(randomRight) || Products.lastDisplayed.includes(randomMiddle) || Products.lastDisplayed.includes(randomLeft)) {
     console.log('Duplicate was caught!');
     randomLeft = Math.floor(Math.random() * Products.allProducts.length);
     randomMiddle = Math.floor(Math.random() * Products.allProducts.length);
@@ -106,10 +106,15 @@ function randomProducts() {
   Products.lastDisplayed.push(randomMiddle);
 }
 
+// check the click counter
+
+// turn off event listener
+sectionElement.addEventListener('click', handleClick);
+
 function handleClick(event) {
   // increment click counter
   Products.totalClicks++;
-
+  randomProducts();
   // increment clicks/votes on the specific image
   console.log(event.target.alt);
 
@@ -120,10 +125,9 @@ function handleClick(event) {
     }
   }
 
-  // check the click counter
-  if(Products.totalClicks > 24) {
-    // turn off event listener
-    sectionElement.addEventListener('click', handleClick);
+  if (Products.totalClicks > 24) {
+
+
 
     // if greater than 20, display results as a list
     showResults();
