@@ -106,10 +106,8 @@ function randomProducts() {
   Products.lastDisplayed.push(randomMiddle);
 }
 
-// check the click counter
 
-// turn off event listener
-sectionElement.addEventListener('click', handleClick);
+
 
 function handleClick(event) {
   // increment click counter
@@ -127,8 +125,8 @@ function handleClick(event) {
 
   if (Products.totalClicks > 24) {
 
-
-
+  // turn off event listener
+    sectionElement.removeEventListener('click', handleClick);
     // if greater than 20, display results as a list
     showResults();
 
@@ -136,8 +134,9 @@ function handleClick(event) {
     updateVotes();
 
     // display the chart
-    //   renderChart();
-    // } else {
+    renderChart();
+  } else {
+
     // if less than 21, display a new set of random goat images
     randomProducts();
   }
@@ -165,11 +164,40 @@ function updateVotes() {
   }
 }
 
+
 // add event listener to the section
 sectionElement.addEventListener('click', handleClick);
 
 // render two images on page load
 randomProducts();
 
+// use Chart.js to create a bar chart
+function renderChart() {
 
+  // access the canvas element from the DOM
+  var context = document.getElementById('products-chart').getContext('2d');
+
+  var arrayOfColors = ['#C4D4EO', '#9AABB9', '#E9C77B' , '#E2B49A' , '#193446' ,'#C4D4EO', '#9AABB9', '#E9C77B' , '#E2B49A' , '#193446' , '#C4D4EO', '#9AABB9', '#E9C77B' , '#E2B49A' , '#193446', '#C4D4EO', '#9AABB9', '#E9C77B' , '#E2B49A' , '#193446'];
+
+  new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: productsNames, // array of the goat names, populated above
+      datasets: [{
+        label: 'Votes Per Item',
+        data: productsVotes,
+        backgroundColor: arrayOfColors,
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
 
